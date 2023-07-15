@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
     {
         MainMenu.SetActive(false);
         MainGame.SetActive(true);
-        // add game canvas - true
         MusicSource.clip = GameMusic;
         MusicSource.Play();
     }
