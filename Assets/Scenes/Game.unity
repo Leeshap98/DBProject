@@ -12676,6 +12676,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoseEffect
       objectReference: {fileID: 0}
+    - target: {fileID: 757679324954489245, guid: 7c6c769dc10615147b997b75b3d5de62, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 757679324954489246, guid: 7c6c769dc10615147b997b75b3d5de62, type: 3}
       propertyPath: ShapeModule.m_Position.y
       value: 30
