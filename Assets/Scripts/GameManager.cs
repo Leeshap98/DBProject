@@ -7,6 +7,7 @@ using UnityEngine.Audio;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject MainMenu;
+    [SerializeField] GameObject MainGame;
     [SerializeField] GameObject OptionsMenu;
     [SerializeField] GameObject Credits;
     [SerializeField] AudioSource SFXSource;
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         MainMenu.SetActive(false);
+        MainGame.SetActive(true);
         // add game canvas - true
         MusicSource.clip = GameMusic;
         MusicSource.Play();
