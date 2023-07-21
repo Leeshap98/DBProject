@@ -403,9 +403,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 773978536}
-  currentTime: 0
-  countDown: 0
-  hasLimits: 0
+  currentTime: 10
+  countDown: 1
+  hasLimits: 1
   timerLimit: 0
   hasFormat: 1
   format: 1
