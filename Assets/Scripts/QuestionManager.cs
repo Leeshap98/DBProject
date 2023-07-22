@@ -10,11 +10,22 @@ public class QuestionManager : MonoBehaviour
     [SerializeField] TMPro.TMP_Text Ans2_text;
     [SerializeField] TMPro.TMP_Text Ans3_text;
     [SerializeField] TMPro.TMP_Text Ans4_text;
-
+    int questionNum = 1;
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(GetQuestion(1));
+        
+        StartCoroutine(GetQuestion(questionNum));
+    }
+
+    private void Update()
+    {
+        StartCoroutine(GetQuestion(questionNum));
+    }
+
+    public void NextQuestion()
+    {
+        questionNum++;
     }
 
 

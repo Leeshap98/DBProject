@@ -15,16 +15,23 @@ public class UpdatePlayer : MonoBehaviour
     IEnumerator UpdatePlayerCoroutine(string name)
     {
         UnityWebRequest www = UnityWebRequest.Get("https://localhost:44330/api/SetPlayer?name=" + name);
+        UnityWebRequest www1 = UnityWebRequest.Get("https://localhost:44330/api/SetActive?name=" + name);
         yield return www.SendWebRequest();
-
-        if (www.result != UnityWebRequest.Result.Success)
+        yield return www1.SendWebRequest();
+        if (www.result != UnityWebRequest.Result.Success || www1.result != UnityWebRequest.Result.Success)
         {
             Debug.Log(www.error);
+            Debug.Log(www1.error);
         }
         else
         {
             // Show results as text
+            Debug.Log(www1.downloadHandler.text);
             Debug.Log(www.downloadHandler.text);
         }
     }
+      
+
+        
+
 }
