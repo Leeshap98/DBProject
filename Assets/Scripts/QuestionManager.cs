@@ -14,7 +14,6 @@ public class QuestionManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         StartCoroutine(GetQuestion(1));
     }
 
@@ -33,8 +32,10 @@ public class QuestionManager : MonoBehaviour
             // Show results as text
             Debug.Log(www.downloadHandler.text);
 
+                
 
             Question question = JsonUtility.FromJson<Question>(www.downloadHandler.text);
+          
             if (question != null)
             {
                 Question_text.text = question.text;

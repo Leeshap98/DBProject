@@ -6,6 +6,7 @@ using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] GameObject NameEnterMenu;
     [SerializeField] GameObject MainMenu;
     [SerializeField] GameObject MainGame;
     [SerializeField] GameObject OptionsMenu;
@@ -22,6 +23,13 @@ public class GameManager : MonoBehaviour
         MusicSource.clip = MainMusic;
         MusicSource.Play();
     }
+
+    public void NameEnter()
+    {
+        MainMenu.SetActive(true);
+        NameEnterMenu.SetActive(false);
+    }
+
     public void StartGame()
     {
         MainMenu.SetActive(false);
