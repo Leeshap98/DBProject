@@ -14,7 +14,10 @@ public class Timer : MonoBehaviour
     private Dictionary<TimerFormats, string> timeFormants = new Dictionary<TimerFormats, string>();
 
     private bool timerActive = true;
-    private float currentTime;
+
+    int score = 0;
+
+    public float CurrentTime { get; private set; }
 
     void Start()
     {
@@ -22,18 +25,18 @@ public class Timer : MonoBehaviour
         timeFormants.Add(TimerFormats.TenthDecimal, "0.0");
         timeFormants.Add(TimerFormats.HunderthsDecimal, "0.00");
 
-        currentTime = 11f;
+        CurrentTime = 11f;
     }
 
     void Update()
     {
         if (timerActive == true)
         {
-            currentTime = currentTime - Time.deltaTime;
+            CurrentTime = CurrentTime - Time.deltaTime;
 
-            if (currentTime <= 0)
+            if (CurrentTime <= 0)
             {
-                currentTime = 0;
+                CurrentTime = 0;
                 timerActive = false;
                 SetTimerText();
                 timerText.color = Color.red;
@@ -46,7 +49,7 @@ public class Timer : MonoBehaviour
 
     public void ResetTimer()
     {
-        currentTime = 11f;
+        CurrentTime = 11f;
         timerActive = true;
     }
     public void StopTimer()
@@ -56,7 +59,7 @@ public class Timer : MonoBehaviour
 
     private void SetTimerText()
     {
-        timerText.text = hasFormat ? currentTime.ToString(timeFormants[format]) : currentTime.ToString();
+        timerText.text = hasFormat ? CurrentTime.ToString(timeFormants[format]) : CurrentTime.ToString();
     }
 
     public enum TimerFormats
@@ -64,5 +67,11 @@ public class Timer : MonoBehaviour
         Whole,
         TenthDecimal,
         HunderthsDecimal
+    }
+
+    public void RightAns()
+    {
+        score += (int)CurrentTime * 10;
+        Debug.Log(score);
     }
 }

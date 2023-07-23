@@ -11,6 +11,7 @@ public class QuestionManager : MonoBehaviour
     [SerializeField] TMPro.TMP_Text Ans3_text;
     [SerializeField] TMPro.TMP_Text Ans4_text;
     int questionNum = 1;
+    //float score = 0;
 
     //Timer Script Refrence
     public Timer timer;
@@ -29,6 +30,7 @@ public class QuestionManager : MonoBehaviour
     public void NextQuestion()
     {
         questionNum++;
+        
         timer.ResetTimer();
     }
 
@@ -62,5 +64,11 @@ public class QuestionManager : MonoBehaviour
             }
         }
     }
+
+    //public void RightAns()
+    //{
+    //    score += timer.CurrentTime * 100;
+    //    Debug.Log(score);
+    //}
 
 }
