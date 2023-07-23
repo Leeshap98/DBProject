@@ -38,11 +38,9 @@ public class Timer : MonoBehaviour
                 SetTimerText();
                 timerText.color = Color.red;
                 enabled = false;
-                //Start();
                 Debug.Log("Timer Finished");
             }
         }
-
         SetTimerText();
     }
 

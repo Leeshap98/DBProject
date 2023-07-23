@@ -11,10 +11,13 @@ public class QuestionManager : MonoBehaviour
     [SerializeField] TMPro.TMP_Text Ans3_text;
     [SerializeField] TMPro.TMP_Text Ans4_text;
     int questionNum = 1;
-    // Start is called before the first frame update
+
+    //Timer Script Refrence
+    public Timer timer;
+
+    
     void Start()
     {
-        
         StartCoroutine(GetQuestion(questionNum));
     }
 
@@ -26,6 +29,7 @@ public class QuestionManager : MonoBehaviour
     public void NextQuestion()
     {
         questionNum++;
+        timer.ResetTimer();
     }
 
 
