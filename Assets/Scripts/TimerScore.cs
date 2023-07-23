@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Timer : MonoBehaviour
+public class TimerScore : MonoBehaviour
 {
     [Header("Timer Text")]
     public TextMeshProUGUI timerText;
+    public TextMeshProUGUI ScoreEndScreenText;
+    public TextMeshProUGUI TimeEndScreenText;
 
     [Header("Format Settings")]
     public bool hasFormat;
@@ -45,6 +47,11 @@ public class Timer : MonoBehaviour
             }
         }
         SetTimerText();
+
+        //Setting the End Screen
+        //Testing which way is better
+        TimeEndScreenText.SetText("It took you " + score / 10f + " Seconds to answer");
+        ScoreEndScreenText.text = "Your Score is: " + score;
     }
 
     public void ResetTimer()
@@ -74,4 +81,7 @@ public class Timer : MonoBehaviour
         score += (int)CurrentTime * 10;
         Debug.Log(score);
     }
+
+
+
 }

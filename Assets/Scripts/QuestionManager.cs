@@ -14,7 +14,7 @@ public class QuestionManager : MonoBehaviour
     //float score = 0;
 
     //Timer Script Refrence
-    public Timer timer;
+    public TimerScore timer;
 
     
     void Start()
