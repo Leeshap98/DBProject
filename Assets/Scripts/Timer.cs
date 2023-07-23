@@ -5,21 +5,16 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    [Header("Time Text TMP Options")]
+    [Header("Timer Text")]
     public TextMeshProUGUI timerText;
-
-    [Header("Timer Settings")]
-    public float currentTime;
-    public bool countDown;
-
-    [Header("Limits")]
-    public bool hasLimits;
-    public float timerLimit;
 
     [Header("Format Settings")]
     public bool hasFormat;
     public TimerFormats format;
     private Dictionary<TimerFormats, string> timeFormants = new Dictionary<TimerFormats, string>();
+
+    private bool timerActive = true;
+    private float currentTime;
 
     void Start()
     {
@@ -27,23 +22,38 @@ public class Timer : MonoBehaviour
         timeFormants.Add(TimerFormats.TenthDecimal, "0.0");
         timeFormants.Add(TimerFormats.HunderthsDecimal, "0.00");
 
-
+        currentTime = 11f;
     }
 
     void Update()
     {
-        //If countDown is marked, time is counting down
-        currentTime = countDown ? currentTime -= Time.deltaTime : currentTime += Time.deltaTime;
-
-        if(hasLimits && ((countDown && currentTime <= timerLimit) || (!countDown && currentTime >= timerLimit)))
+        if (timerActive == true)
         {
-            currentTime = timerLimit;
-            SetTimerText();
-            timerText.color = Color.red;
-            enabled = false;
+            currentTime = currentTime - Time.deltaTime;
+
+            if (currentTime <= 0)
+            {
+                currentTime = 0;
+                timerActive = false;
+                SetTimerText();
+                timerText.color = Color.red;
+                enabled = false;
+                //Start();
+                Debug.Log("Timer Finished");
+            }
         }
 
         SetTimerText();
+    }
+
+    public void ResetTimer()
+    {
+        currentTime = 11f;
+        timerActive = true;
+    }
+    public void StopTimer()
+    {
+        timerActive = false;
     }
 
     private void SetTimerText()
