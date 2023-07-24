@@ -23,13 +23,16 @@ public class QuestionManager : MonoBehaviour
 
     private void Update()
     {
-        StartCoroutine(GetQuestion(questionNum));
+       
     }
 
     public void NextQuestion()
     {
-        questionNum++;
         timer.ResetTimer();
+        questionNum++;
+        timer.resetBG();
+        timer.StartTimer();
+        StartCoroutine(GetQuestion(questionNum));
     }
 
 

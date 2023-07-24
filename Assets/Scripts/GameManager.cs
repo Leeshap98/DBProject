@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioClip ButtonSFX;
     [SerializeField] AudioClip MainMusic;
     [SerializeField] AudioClip GameMusic;
-
+    public TimerScore Timer;
 
     public void Awake()
     {
@@ -26,16 +26,19 @@ public class GameManager : MonoBehaviour
 
     public void NameEnter()
     {
-        MainMenu.SetActive(true);
+        Timer.StartTimer();
         NameEnterMenu.SetActive(false);
+        MainGame.SetActive(true);
+        MusicSource.clip = GameMusic;
+        MusicSource.Play();
     }
 
     public void StartGame()
     {
         MainMenu.SetActive(false);
-        MainGame.SetActive(true);
-        MusicSource.clip = GameMusic;
-        MusicSource.Play();
+        NameEnterMenu.SetActive(true);
+        
+       
     }
 
     public void OptionsOn()
