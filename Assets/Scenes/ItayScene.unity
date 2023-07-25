@@ -280,6 +280,8 @@ MonoBehaviour:
   ButtonSFX: {fileID: 8300000, guid: 0463426d0e62be045b8bccb08b123db3, type: 3}
   MainMusic: {fileID: 8300000, guid: 0cced2da532eb58468d300cd558e51ba, type: 3}
   GameMusic: {fileID: 8300000, guid: 7b47e8a899e640148bc510e5e2ed4337, type: 3}
+  startButton: {fileID: 1860850721}
+  winScreen: {fileID: 3811834023618122565}
   Timer: {fileID: 511735823}
 --- !u!4 &511735821
 Transform:
@@ -900,6 +902,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1860850721 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3811834024548117421, guid: fd24f491a7565d545b104e6a4b66b849, type: 3}
+  m_PrefabInstance: {fileID: 3811834023618122562}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1975433934 stripped

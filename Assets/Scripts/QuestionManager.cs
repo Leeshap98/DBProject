@@ -21,20 +21,20 @@ public class QuestionManager : MonoBehaviour
         StartCoroutine(GetQuestion(questionNum));
     }
 
-    private void Update()
-    {
-       
-    }
-
     public void NextQuestion()
     {
+        if(questionNum > 4)
+        {
+            GameManager.Instance.WinScreen();
+            return;
+        }
+
         timer.ResetTimer();
         questionNum++;
         timer.resetBG();
         timer.StartTimer();
         StartCoroutine(GetQuestion(questionNum));
     }
-
 
     IEnumerator GetQuestion(int id)
     {
