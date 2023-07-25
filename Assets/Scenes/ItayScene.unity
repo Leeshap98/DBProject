@@ -406,11 +406,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b964d0982b113bd4eb0d2b73c14fe9ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  updatePlayer: {fileID: 1020548513}
   NextButton: {fileID: 1283567537}
   timerText: {fileID: 773978536}
   scoreText: {fileID: 1830626609}
-  ScoreEndScreenText: {fileID: 3811834023618122563}
-  TimeEndScreenText: {fileID: 3811834023618122564}
+  theWinner: {fileID: 0}
   hasFormat: 1
   format: 1
   Ans1BG: {fileID: 2145848417}
@@ -1938,28 +1938,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd24f491a7565d545b104e6a4b66b849, type: 3}
---- !u!114 &3811834023618122563 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3811834022742521931, guid: fd24f491a7565d545b104e6a4b66b849, type: 3}
-  m_PrefabInstance: {fileID: 3811834023618122562}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3811834023618122564 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3811834023235296457, guid: fd24f491a7565d545b104e6a4b66b849, type: 3}
-  m_PrefabInstance: {fileID: 3811834023618122562}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3811834023618122565 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3811834024114995681, guid: fd24f491a7565d545b104e6a4b66b849, type: 3}
@@ -1977,11 +1955,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b964d0982b113bd4eb0d2b73c14fe9ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  updatePlayer: {fileID: 0}
   NextButton: {fileID: 0}
   timerText: {fileID: 773978536}
   scoreText: {fileID: 0}
-  ScoreEndScreenText: {fileID: 3811834023618122563}
-  TimeEndScreenText: {fileID: 3811834023618122564}
+  theWinner: {fileID: 0}
   hasFormat: 1
   format: 1
   Ans1BG: {fileID: 0}

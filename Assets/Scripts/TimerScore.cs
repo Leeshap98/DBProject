@@ -6,14 +6,15 @@ using UnityEngine.Networking;
 
 public class TimerScore : MonoBehaviour
 {
+    public UpdatePlayer updatePlayer;
+
     [Header("Buttons")]
     public GameObject NextButton;
 
     [Header("Timer Text")]
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI ScoreEndScreenText;
-    public TextMeshProUGUI TimeEndScreenText;
+    public TextMeshProUGUI theWinner;
 
     [Header("Format Settings")]
     public bool hasFormat;
@@ -62,17 +63,14 @@ public class TimerScore : MonoBehaviour
                 timerText.color = Color.red;
                 //enabled = false;
                 Debug.Log("Timer Finished");
-
-                // Emily added + needs to be checked - Call the function to send the player's name and score to the server
-                SendPlayerScoreToServer();
             }
         }
         SetTimerText();
 
         // Setting the End Screen
         // Testing which way is better
-        TimeEndScreenText.SetText("It took you " + scoreCount / 10f + " Seconds to answer");
-        ScoreEndScreenText.text = "Your Score is: " + scoreCount;
+
+
     }
 
     public void StartTimer()
@@ -138,24 +136,14 @@ public class TimerScore : MonoBehaviour
         Ans4BG.SetActive(false);
     }
 
-    // Emily added + needs to be checked
-    private void SendPlayerScoreToServer()
+    IEnumerator SendScoreToServer(string name, int score)
     {
-        // Replace the URL with the actual server API endpoint for updating player scores
-        string serverURL = "https://localhost:44330/api/UpdatePlayerScore";
+        string serverURL = $"https://localhost:44330/api/Score?Name={name}&Score={score}";
+        WWWForm form = new WWWForm();
+        form.AddField("Name", name);
+        form.AddField("Score", score.ToString());
 
-        // Change "PlayerName" to the actual player's name entered in the game
-        string playerName = "PlayerName";
-
-        // Prepare the URL with the player's name and score as parameters
-        string urlWithParameters = $"{serverURL}?name={playerName}&score={scoreCount}";
-
-        StartCoroutine(SendScoreRequest(urlWithParameters));
-    }
-
-    IEnumerator SendScoreRequest(string url)
-    {
-        UnityWebRequest www = UnityWebRequest.Get(url);
+        UnityWebRequest www = UnityWebRequest.Post(serverURL, form);
         yield return www.SendWebRequest();
 
         if (www.result != UnityWebRequest.Result.Success)
@@ -166,5 +154,29 @@ public class TimerScore : MonoBehaviour
         {
             Debug.Log("Player score sent to the server successfully!");
         }
+
+        yield return new WaitForSeconds(2f);
+        StartCoroutine(SendScoreToServer(updatePlayer.player_name.text, scoreCount));
     }
+
+    public IEnumerator TheWinnerIs()
+    {
+        UnityWebRequest www = UnityWebRequest.Get("https://localhost:44330/api/Winner");
+        yield return www.SendWebRequest();
+
+        if (www.result != UnityWebRequest.Result.Success)
+        {
+            Debug.Log(www.error);
+        }
+        else
+        {
+            Debug.Log(www.downloadHandler.text);
+
+            string winnerName = www.downloadHandler.text;
+            theWinner.text = "The winner is: " + winnerName;
+            Debug.Log(winnerName);
+        }   
+    }
+
+
 }
