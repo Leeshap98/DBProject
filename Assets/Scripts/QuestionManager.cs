@@ -10,10 +10,12 @@ public class QuestionManager : MonoBehaviour
     [SerializeField] TMPro.TMP_Text Ans2_text;
     [SerializeField] TMPro.TMP_Text Ans3_text;
     [SerializeField] TMPro.TMP_Text Ans4_text;
+    [SerializeField] GameObject button1;
 
     int questionNum = 1;
 
     public TimerScore timer;
+    [SerializeField] UpdatePlayer updatePlayer;
 
     
     void Start()
@@ -25,15 +27,69 @@ public class QuestionManager : MonoBehaviour
     {
         if(questionNum > 4)
         {
-            GameManager.Instance.WinScreen();
+            StartCoroutine(PlayerFinish(updatePlayer.Name));
+            StartCoroutine(CheckIfBothPlayersFinished());
             return;
         }
 
+        timer.DisplayAnswerBackground(false);
+        timer.ChangeStateAnswerButtons(true);
         timer.ResetTimer();
         questionNum++;
         timer.resetBG();
         timer.StartTimer();
+        
         StartCoroutine(GetQuestion(questionNum));
+    }
+
+    IEnumerator CheckIfBothPlayersFinished()
+    {
+        UnityWebRequest www = UnityWebRequest.Get("https://localhost:44330/api/CheckIfBothPlayersFinished");
+        yield return www.SendWebRequest();
+
+        if (www.result != UnityWebRequest.Result.Success)
+        {
+            Debug.Log(www.error);
+        }
+        else
+        {
+            Debug.Log("2 players finished");
+
+            bool twoPlayersFinished;
+            if (bool.TryParse(www.downloadHandler.text, out twoPlayersFinished))
+            {
+                if (twoPlayersFinished)
+                {
+                    GameManager.Instance.WinScreen();
+                }
+                else
+                {
+                    GameManager.Instance.DisplayWatingScreen();
+                }
+            }
+            else
+            {
+                Debug.Log("problem with server data");
+            }
+        }
+
+        yield return new WaitForSeconds(2f);
+        StartCoroutine(CheckIfBothPlayersFinished());
+    }
+
+    IEnumerator PlayerFinish(string name)
+    {
+        UnityWebRequest www = UnityWebRequest.Get($"https://localhost:44330/api/PlayerFinished?name={name}");
+        yield return www.SendWebRequest(); 
+
+        if (www.result != UnityWebRequest.Result.Success)
+        {
+            Debug.Log(www.error);
+        }
+        else
+        {
+            Debug.Log("Player finished");
+        }
     }
 
     IEnumerator GetQuestion(int id)

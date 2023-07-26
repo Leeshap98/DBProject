@@ -9,10 +9,13 @@ public class UpdatePlayer : MonoBehaviour
     public TMPro.TMP_Text player_name;
     public Button startGameButton;
 
+    public string Name { get; private set; }
+
     public void UpdatePlayerFunc()
     {
-
+        Name = player_name.text;
         StartCoroutine(UpdatePlayerCoroutine(player_name.text));
+        Debug.Log(Name);
     }
 
     IEnumerator UpdatePlayerCoroutine(string name)

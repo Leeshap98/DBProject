@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Networking;
-
+using UnityEngine.UI;
 public class TimerScore : MonoBehaviour
 {
     public UpdatePlayer updatePlayer;
@@ -21,11 +21,14 @@ public class TimerScore : MonoBehaviour
     public TimerFormats format;
     private Dictionary<TimerFormats, string> timeFormants = new Dictionary<TimerFormats, string>();
 
-    [Header("Answer Backgrounds")]
-    public GameObject Ans1BG;
-    public GameObject Ans2BG;
-    public GameObject Ans3BG;
-    public GameObject Ans4BG;
+    [Header("Answer Buttons")]
+    public Button Ans1Button;
+    public Button Ans2Button;
+    public Button Ans3Button;
+    public Button Ans4Button;
+
+    [Header("Answer Background")]
+    [SerializeField] GameObject[] backgroundButtons;
 
     private bool timerActive = false;
     private int scoreCount = 0;
@@ -47,6 +50,7 @@ public class TimerScore : MonoBehaviour
         CurrentTime = initialTime;
         originalTime = initialTime;
         SetTimerText();
+
     }
 
     void Update()
@@ -104,46 +108,70 @@ public class TimerScore : MonoBehaviour
         HunderthsDecimal
     }
 
+    public void DisplayAnswerBackground(bool state)
+    {
+        foreach(GameObject background in backgroundButtons)
+        {
+            background.SetActive(state);
+        }
+    }
+
     public void RightAns() // connect to right answers buttons
     {
+        DisplayAnswerBackground(true);
+        ChangeStateAnswerButtons(false);
         NextButton.SetActive(true);
         StopTimer();
-        Ans1BG.SetActive(true);
-        Ans2BG.SetActive(true);
-        Ans3BG.SetActive(true);
-        Ans4BG.SetActive(true);
+        Ans1Button.gameObject.SetActive(true);
+        Ans2Button.gameObject.SetActive(true);
+        Ans3Button.gameObject.SetActive(true);
+        Ans4Button.gameObject.SetActive(true);
         scoreCount += (int)CurrentTime * 10;
         Debug.Log(scoreCount);
         scoreText.text = "Score: " + scoreCount.ToString();
     }
 
+    public void ChangeStateAnswerButtons(bool state)
+    {
+        Ans2Button.interactable = state;
+        Ans3Button.interactable = state;
+        Ans1Button.interactable = state;
+        Ans4Button.interactable = state;
+    }
+
     public void WrongAns() // connect to wrong answers
     {
+        DisplayAnswerBackground(true);
+        ChangeStateAnswerButtons(false);
         NextButton.SetActive(true);
-        Ans1BG.SetActive(true);
-        Ans2BG.SetActive(true);
-        Ans3BG.SetActive(true);
-        Ans4BG.SetActive(true);
+        Ans1Button.gameObject.SetActive(true);
+        Ans2Button.gameObject.SetActive(true);
+        Ans3Button.gameObject.SetActive(true);
+        Ans4Button.gameObject.SetActive(true);
         StopTimer();
     }
 
     public void resetBG() // connect to next button
     {
         NextButton.SetActive(false);
-        Ans1BG.SetActive(false);
+        /*Ans1BG.SetActive(false);
         Ans2BG.SetActive(false);
         Ans3BG.SetActive(false);
-        Ans4BG.SetActive(false);
+        Ans4BG.SetActive(false);*/
     }
 
-    IEnumerator SendScoreToServer(string name, int score)
+    public void SendScore()
     {
-        string serverURL = $"https://localhost:44330/api/Score?Name={name}&Score={score}";
-        WWWForm form = new WWWForm();
-        form.AddField("Name", name);
-        form.AddField("Score", score.ToString());
+        StartCoroutine(SendScoreToServer(updatePlayer.Name , scoreCount));
+        print(updatePlayer.Name);
+        print(scoreCount);
+    }
 
-        UnityWebRequest www = UnityWebRequest.Post(serverURL, form);
+     IEnumerator SendScoreToServer(string name, int score)
+    {
+        string serverURL = $"https://localhost:44330/api/Score?name={name}&score={score}";
+
+        UnityWebRequest www = UnityWebRequest.Get(serverURL);
         yield return www.SendWebRequest();
 
         if (www.result != UnityWebRequest.Result.Success)
@@ -159,6 +187,11 @@ public class TimerScore : MonoBehaviour
         StartCoroutine(SendScoreToServer(updatePlayer.player_name.text, scoreCount));
     }
 
+    public void MakeHimTheWinner()
+    {
+        StartCoroutine(TheWinnerIs());
+    }
+
     public IEnumerator TheWinnerIs()
     {
         UnityWebRequest www = UnityWebRequest.Get("https://localhost:44330/api/Winner");
@@ -172,9 +205,8 @@ public class TimerScore : MonoBehaviour
         {
             Debug.Log(www.downloadHandler.text);
 
-            string winnerName = www.downloadHandler.text;
+            string winnerName = www.downloadHandler.text.Trim('"');
             theWinner.text = "The winner is: " + winnerName;
-            Debug.Log(winnerName);
         }   
     }
 

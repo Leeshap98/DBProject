@@ -22,7 +22,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioClip GameMusic;
     [SerializeField] Button startButton;
     [SerializeField] GameObject winScreen;
+    [SerializeField] GameObject waitingScreen;
     public TimerScore Timer;
+    [SerializeField] UpdatePlayer _updatePlayer;
 
     public void Awake()
     {
@@ -42,9 +44,11 @@ public class GameManager : MonoBehaviour
 
     public void WinScreen()
     {
+        waitingScreen.SetActive(false);
         MainGame.SetActive(false);
         MainMenu.SetActive(false);
         winScreen.SetActive(true);
+        Timer.MakeHimTheWinner();
     }
 
     public void NameEnter()
@@ -60,6 +64,14 @@ public class GameManager : MonoBehaviour
         MainGame.SetActive(true);
         MusicSource.clip = GameMusic;
         MusicSource.Play();
+        Timer.SendScore();
+    }
+
+    public void DisplayWatingScreen()
+    {
+        MainGame.SetActive(false);
+        MainMenu.SetActive(false);
+        waitingScreen.SetActive(true);
     }
 
     public void OptionsOn()

@@ -239,6 +239,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &341552014 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3811834024453111880, guid: fd24f491a7565d545b104e6a4b66b849, type: 3}
+  m_PrefabInstance: {fileID: 3811834023618122562}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &511735819
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +293,9 @@ MonoBehaviour:
   GameMusic: {fileID: 8300000, guid: 7b47e8a899e640148bc510e5e2ed4337, type: 3}
   startButton: {fileID: 1860850721}
   winScreen: {fileID: 3811834023618122565}
+  waitingScreen: {fileID: 599973941}
   Timer: {fileID: 511735823}
+  _updatePlayer: {fileID: 1020548513}
 --- !u!4 &511735821
 Transform:
   m_ObjectHideFlags: 0
@@ -410,13 +423,18 @@ MonoBehaviour:
   NextButton: {fileID: 1283567537}
   timerText: {fileID: 773978536}
   scoreText: {fileID: 1830626609}
-  theWinner: {fileID: 0}
+  theWinner: {fileID: 1435298623}
   hasFormat: 1
   format: 1
-  Ans1BG: {fileID: 2145848417}
-  Ans2BG: {fileID: 1975433934}
-  Ans3BG: {fileID: 694462438}
-  Ans4BG: {fileID: 2023306497}
+  Ans1Button: {fileID: 1185030079}
+  Ans2Button: {fileID: 1787462389}
+  Ans3Button: {fileID: 341552014}
+  Ans4Button: {fileID: 522985706}
+  backgroundButtons:
+  - {fileID: 2145848417}
+  - {fileID: 1975433934}
+  - {fileID: 694462438}
+  - {fileID: 2023306497}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,6 +616,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &522985706 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3811834022848459558, guid: fd24f491a7565d545b104e6a4b66b849, type: 3}
+  m_PrefabInstance: {fileID: 3811834023618122562}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &584812379 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3811834023112217625, guid: fd24f491a7565d545b104e6a4b66b849, type: 3}
@@ -609,6 +638,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &599973941 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3811834023197958811, guid: fd24f491a7565d545b104e6a4b66b849, type: 3}
+  m_PrefabInstance: {fileID: 3811834023618122562}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &650174328 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3811834023693426273, guid: fd24f491a7565d545b104e6a4b66b849, type: 3}
@@ -755,7 +789,9 @@ MonoBehaviour:
   Ans2_text: {fileID: 1109743169}
   Ans3_text: {fileID: 947111702}
   Ans4_text: {fileID: 2005493660}
+  button1: {fileID: 0}
   timer: {fileID: 511735823}
+  updatePlayer: {fileID: 1020548513}
 --- !u!4 &1020548512
 Transform:
   m_ObjectHideFlags: 0
@@ -799,6 +835,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1185030079 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3811834024126284469, guid: fd24f491a7565d545b104e6a4b66b849, type: 3}
+  m_PrefabInstance: {fileID: 3811834023618122562}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1221069627 stripped
@@ -877,6 +924,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1435298623 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3811834024785363859, guid: fd24f491a7565d545b104e6a4b66b849, type: 3}
+  m_PrefabInstance: {fileID: 3811834023618122562}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1608690480 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3371175487288936132, guid: fd24f491a7565d545b104e6a4b66b849, type: 3}
@@ -893,6 +951,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 722804359779355772, guid: fd24f491a7565d545b104e6a4b66b849, type: 3}
   m_PrefabInstance: {fileID: 3811834023618122562}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1787462389 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3811834023405853601, guid: fd24f491a7565d545b104e6a4b66b849, type: 3}
+  m_PrefabInstance: {fileID: 3811834023618122562}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1830626609 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3697274691369170642, guid: fd24f491a7565d545b104e6a4b66b849, type: 3}
@@ -1740,6 +1809,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 400
       objectReference: {fileID: 0}
+    - target: {fileID: 4482168427252178989, guid: fd24f491a7565d545b104e6a4b66b849, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4652554787462250211, guid: fd24f491a7565d545b104e6a4b66b849, type: 3}
       propertyPath: m_SizeDelta.x
       value: 300
@@ -1962,7 +2035,8 @@ MonoBehaviour:
   theWinner: {fileID: 0}
   hasFormat: 1
   format: 1
-  Ans1BG: {fileID: 0}
-  Ans2BG: {fileID: 0}
-  Ans3BG: {fileID: 0}
-  Ans4BG: {fileID: 0}
+  Ans1Button: {fileID: 0}
+  Ans2Button: {fileID: 0}
+  Ans3Button: {fileID: 0}
+  Ans4Button: {fileID: 0}
+  backgroundButtons: []
