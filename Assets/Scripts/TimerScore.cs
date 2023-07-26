@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class TimerScore : MonoBehaviour
 {
     public UpdatePlayer updatePlayer;
+    public GameManager manager;
 
     [Header("Buttons")]
     public GameObject NextButton;
@@ -94,6 +95,7 @@ public class TimerScore : MonoBehaviour
     public void StopTimer()
     {
         timerActive = false;
+        manager.MusicSource.Stop();
     }
 
     private void SetTimerText()

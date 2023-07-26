@@ -15,6 +15,7 @@ public class QuestionManager : MonoBehaviour
     int questionNum = 1;
 
     public TimerScore timer;
+    public GameManager manager;
     [SerializeField] UpdatePlayer updatePlayer;
 
     
@@ -38,7 +39,10 @@ public class QuestionManager : MonoBehaviour
         questionNum++;
         timer.resetBG();
         timer.StartTimer();
-        
+        manager.MusicSource.clip = manager.GameMusic;
+        manager.MusicSource.Play();
+
+
         StartCoroutine(GetQuestion(questionNum));
     }
 

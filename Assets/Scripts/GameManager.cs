@@ -16,10 +16,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject OptionsMenu;
     [SerializeField] GameObject Credits;
     [SerializeField] AudioSource SFXSource;
-    [SerializeField] AudioSource MusicSource;
+    [SerializeField] public AudioSource MusicSource;
     [SerializeField] AudioClip ButtonSFX;
     [SerializeField] AudioClip MainMusic;
-    [SerializeField] AudioClip GameMusic;
+    [SerializeField] public AudioClip GameMusic;
+    [SerializeField] public AudioClip WinMusic;
     [SerializeField] Button startButton;
     [SerializeField] GameObject winScreen;
     [SerializeField] GameObject waitingScreen;
@@ -49,6 +50,8 @@ public class GameManager : MonoBehaviour
         MainMenu.SetActive(false);
         winScreen.SetActive(true);
         Timer.MakeHimTheWinner();
+        MusicSource.clip = WinMusic;
+        MusicSource.Play();
     }
 
     public void NameEnter()
